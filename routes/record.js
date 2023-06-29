@@ -18,6 +18,8 @@ recordRoutes.route("/record").get(function (req, res) {
  db_connect
    .collection("records")
    .find({})
+   .sort({season: 1, week: 1, player1: 1})
+   .collation({locale: "en_US", numericOrdering: true})
    .toArray(function (err, result) {
      if (err) throw err;
      res.json(result);
